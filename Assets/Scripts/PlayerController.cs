@@ -11,12 +11,15 @@ public class PlayerController : MonoBehaviour
         Right
     };
 
+    // facing of the player
     private Facing facing = Facing.Right;
+    // horizontal speed
     public float speed = 10.0f;
+    // jump managing
     public float jumpForce = 10.0f;
     public int maxConsecutiveJumps = 2;
     public int currentJumps = 0;
-
+    // slide managing
     public float slideForce = 10.0f;
 
     private Rigidbody2D rigidbody2d;
