@@ -689,13 +689,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ed62eb4bc03d74495c5939d76f92d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMana: 100
-  currentMana: 0
-  rootPrefab: {fileID: 0}
-  currentLine: {fileID: 0}
-  lineRenderer: {fileID: 0}
-  edgeCollider: {fileID: 0}
-  fingerPositions: []
+  manaControl: {fileID: 2133269410}
+  rootPrefab: {fileID: 1160411418115931207, guid: 6e778f133d30a564d831d6a847aed013, type: 3}
+  rootShadowPrefab: {fileID: 1160411418115931207, guid: 7f23fad09d6c7554a96cfc021c8800c3, type: 3}
+  fingerPointsDistances: []
 --- !u!4 &1339162351
 Transform:
   m_ObjectHideFlags: 0
@@ -1043,4 +1040,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 691343970}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2133269409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2133269411}
+  - component: {fileID: 2133269410}
+  m_Layer: 0
+  m_Name: ManaControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2133269410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133269409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd04fadb1ea7c54f9644af3938c930d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMana: 0
+  currentMana: 0
+  distanceToToggleOneMana: 0
+  rootLenght: 0
+  drawManager: {fileID: 1339162350}
+  temp: 0
+--- !u!4 &2133269411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133269409}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.2046998, y: 0.1064848, z: 0.023181342}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
