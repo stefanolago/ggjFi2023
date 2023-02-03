@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public int currentJumps = 0;
     // slide managing
     public float slideForce = 10.0f;
-
+    public LayerMask groundMask;
     private Rigidbody2D rigidbody2d;
 
 
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if(collision.gameObject.layer == groundMask)
         {
             currentJumps = 0;
         }

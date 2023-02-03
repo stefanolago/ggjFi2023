@@ -13,7 +13,7 @@ public class DrawManager : MonoBehaviour
     LineRenderer lineRenderer;
 
 
-     List<Vector2> fingerPositions;
+     public  List<Vector2> fingerPositions;
     public List<float> fingerPointsDistances;
 
     private void Start()
@@ -22,10 +22,10 @@ public class DrawManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonUp(0))
-        {
-            Debug.Log("Creazione Root");
-        }
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    Debug.Log("Creazione Root");
+        //}
        
             if (Input.GetMouseButtonDown(0))
             {
@@ -33,11 +33,9 @@ public class DrawManager : MonoBehaviour
             }
 
             if (Input.GetMouseButton(0))
-            {
-              
+            {             
                 Vector2 FingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                
-
                 if (Vector2.Distance(FingerPos, fingerPositions[fingerPositions.Count - 1]) > 0.1f)
                 {
                     UpdateLine(FingerPos);
@@ -73,7 +71,8 @@ public class DrawManager : MonoBehaviour
 
         fingerPositions.Add(newFingerPos);
         lineRenderer.positionCount++;
-        lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);        
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);   
+        
         float tempDistance = Vector3.Distance(fingerPositions[fingerPositions.Count], fingerPositions[fingerPositions.Count - 1]);
         fingerPointsDistances.Add(tempDistance);       
         manaControl.temp = true;
