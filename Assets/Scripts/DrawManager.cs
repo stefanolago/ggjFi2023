@@ -44,7 +44,7 @@ public class DrawManager : MonoBehaviour
         lineRenderer = currentLine.GetComponent<LineRenderer>();
         edgeCollider = currentLine.GetComponent<EdgeCollider2D>();
         fingerPositions.Clear();
-        //Invoke(nameof(AddPosition()), 0.2);
+        Invoke(nameof(AddPosition),0.1f);
         lineRenderer.SetPosition(0, fingerPositions[0]);
         lineRenderer.SetPosition(1, fingerPositions[1]);
         edgeCollider.points = fingerPositions.ToArray();
@@ -56,7 +56,7 @@ public class DrawManager : MonoBehaviour
         lineRenderer.SetPosition(lineRenderer.positionCount -1, newFingerPos);
         edgeCollider.points = fingerPositions.ToArray();
     }
-    public void addPosition()
+    public void AddPosition()
     {
         fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
