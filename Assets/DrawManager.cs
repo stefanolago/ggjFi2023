@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class RootCreator : MonoBehaviour
+public class DrawManager : MonoBehaviour
 {
 
+    public float maxMana = 100;
+    public float currentMana;
     public GameObject rootPrefab;
     public GameObject currentLine;
     public LineRenderer lineRenderer;
     public EdgeCollider2D edgeCollider;
     public List<Vector2> fingerPositions;
 
+    private void Start()
+    {
+        currentMana = maxMana;
+    }
     private void Update()
     {
         //Debug.Log(Input.mousePosition);
@@ -38,8 +44,7 @@ public class RootCreator : MonoBehaviour
         lineRenderer = currentLine.GetComponent<LineRenderer>();
         edgeCollider = currentLine.GetComponent<EdgeCollider2D>();
         fingerPositions.Clear();
-        fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        //Invoke(nameof(AddPosition()), 0.2);
         lineRenderer.SetPosition(0, fingerPositions[0]);
         lineRenderer.SetPosition(1, fingerPositions[1]);
         edgeCollider.points = fingerPositions.ToArray();
@@ -50,5 +55,9 @@ public class RootCreator : MonoBehaviour
         lineRenderer.positionCount++;
         lineRenderer.SetPosition(lineRenderer.positionCount -1, newFingerPos);
         edgeCollider.points = fingerPositions.ToArray();
+    }
+    public void addPosition()
+    {
+        fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 }
