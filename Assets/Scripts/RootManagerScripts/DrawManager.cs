@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ public class DrawManager : MonoBehaviour
     [Header("Mana")]
     public ManaControl manaControl;
     [Header("Root/Line")]
-    //public GameObject rootPrefab;
+    public GameObject rootPrefab;
     public GameObject rootShadowPrefab;
     GameObject currentLine;
     LineRenderer lineRenderer;
@@ -21,7 +20,6 @@ public class DrawManager : MonoBehaviour
     }
     private void Update()
     {
-       
         // Click mouse destro porta a cancellare il disegno della radice
         if (Input.GetMouseButtonDown(1)) // aggiungere && la radice ha un componente per identificarla
         {
