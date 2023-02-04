@@ -3,22 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ManaControl : MonoBehaviour
+public class ManaControl : Singleton<ManaControl>
 {
     public int maxMana;
     public int currentMana;
     public int distanceToToggleOneMana;
-    public DrawManager drawManager;
+    public List<ManaConsumer> manaConsumers;
 
-    public bool temp;
+    public bool usingMana;
 
     private void Start()
     {
         currentMana = maxMana;
     }
-    private void Update()
+
+    public void RegisterAsManaConsumer(ManaConsumer manaConsumer)
     {
-        if(temp)
+        manaConsumers.Add(manaConsumer);
+    }
+
+    public void RemoveAsManaConsumer(ManaConsumer manaConsumer)
+    {
+        manaConsumers.Remove(manaConsumer);
+    }
+
+    private void FixedUpdate()
+    {
+        /*if(usingMana)
         {
             float[] pointDistances = drawManager.fingerPointsDistances.ToArray();
             float totalDistances = pointDistances.Sum();
@@ -28,15 +39,22 @@ public class ManaControl : MonoBehaviour
 
              currentMana = maxMana- temporanea;
 
-            temp = false;
+            usingMana = false;
             
+        }*/
+        int consumedMana = 0;
+        for (int i=0; i<manaConsumers.Count; i++)
+        {
+            consumedMana += manaConsumers[i].ManaConsumed();
         }
+        Instance.currentMana = maxMana - consumedMana;
+
+        Debug.Log("Current mana: " + Instance.currentMana);
     }
 
     public void ResetMana()
     {
         currentMana= maxMana;
-        
     }
 
 

@@ -152,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ed62eb4bc03d74495c5939d76f92d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaControl: {fileID: 638169567}
   rootShadowPrefab: {fileID: 1160411418115931207, guid: 7f23fad09d6c7554a96cfc021c8800c3, type: 3}
   fingerPositions: []
   fingerPointsDistances: []
@@ -170,6 +169,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &377636860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 377636861}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &377636861
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377636860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.06, y: -0.19, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 607229164}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &607229161
 GameObject:
@@ -275,7 +305,8 @@ Transform:
   m_LocalPosition: {x: -8.06, y: -2.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 377636861}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -317,14 +348,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5bdd7fed26204f4795aebed6cdf1c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  maxHp: 0
+  maxSpeed: 0
+  acceleration: 0
   jumpForce: 10
-  maxConsecutiveJumps: 2
-  currentJumps: 0
-  slideForce: 10
+  jumpAbortForce: 0
+  stoppingSpeed: 0
+  EndGame: 0
+  groundCheck: {fileID: 377636861}
+  groundCheckerSize: 0
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  timerAudioPassi: 0
 --- !u!1 &638169566
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,8 +393,7 @@ MonoBehaviour:
   maxMana: 0
   currentMana: 0
   distanceToToggleOneMana: 0
-  drawManager: {fileID: 265292881}
-  temp: 0
+  usingMana: 0
 --- !u!4 &638169568
 Transform:
   m_ObjectHideFlags: 0
@@ -470,7 +505,7 @@ GameObject:
   - component: {fileID: 2051930778}
   - component: {fileID: 2051930780}
   - component: {fileID: 2051930781}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}

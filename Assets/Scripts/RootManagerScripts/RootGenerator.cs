@@ -22,7 +22,6 @@ public class RootGenerator : Singleton<RootGenerator>
 
     public void startGrowingRoot(List<Vector2> rootPoints)
     {
-        Debug.Log("START GROWING ROOT");
         Instance.rootPoints = rootPoints;
         addedRootPoints = new List<Vector2>();
 
