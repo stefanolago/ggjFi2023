@@ -429,6 +429,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &481684688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 481684689}
+  m_Layer: 0
+  m_Name: groundChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &481684689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481684688}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.03, y: -3.04, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1157042356}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &599531624
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,7 +544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &730179878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,7 +559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenShot: 1
   bulletPrefab: {fileID: 5088278228737568273, guid: 101b973d03e53fd459b5e7eb1f245005, type: 3}
-  bulletStrenght: 20000
+  bulletStrenght: 10000
   shootPosition: {fileID: 1632064112}
 --- !u!212 &730179879
 SpriteRenderer:
@@ -725,7 +756,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f66077c3418545b458b61ca79a9b3e28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 39fb134d6e195884f84ad7c450e81012, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -747,7 +778,8 @@ Transform:
   m_LocalPosition: {x: 15.35, y: -15.14, z: -5.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 481684689}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -767,8 +799,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.7, y: 0.5}
-    oldSize: {x: 11.99, y: 8}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.51, y: 7}
     newSize: {x: 11.99, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -789,14 +821,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5bdd7fed26204f4795aebed6cdf1c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  maxHp: 3
+  maxSpeed: 10
+  acceleration: 2
   jumpForce: 10
-  maxConsecutiveJumps: 2
-  currentJumps: 0
-  slideForce: 10
+  jumpAbortForce: 4
+  stoppingSpeed: 2
+  EndGame: 0
+  groundCheck: {fileID: 481684689}
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  timerAudioPassi: 0
 --- !u!95 &1157042360
 Animator:
   serializedVersion: 5
@@ -952,6 +988,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1426640723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1426640724}
+  m_Layer: 0
+  m_Name: audioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1426640724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426640723}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.376205, y: -14.288971, z: -5.481976}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1473530159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,7 +1144,7 @@ GameObject:
   - component: {fileID: 1546244833}
   - component: {fileID: 1546244835}
   - component: {fileID: 1546244834}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5103,7 +5170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1592193253}
   - component: {fileID: 1592193252}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
