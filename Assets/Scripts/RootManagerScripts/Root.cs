@@ -5,6 +5,7 @@ using UnityEngine;
 public class Root : MonoBehaviour, ManaConsumer
 {
     public float circleCastRadius;
+   
 
     private LineRenderer lineRenderer;
 
@@ -52,8 +53,14 @@ public class Root : MonoBehaviour, ManaConsumer
             currentDrawnRootPointIndex++;
             edgeCollider.points = addedRootPoints.ToArray();
         }
-
-        CheckDestroy();
+      
+    }
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            CheckDestroy();
+        }
     }
 
     public int ManaConsumed()
@@ -61,20 +68,22 @@ public class Root : MonoBehaviour, ManaConsumer
         return 10;
     }
 
-    private static void CheckDestroy()
+    private void CheckDestroy()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
+
             Vector2 pos =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
+              RaycastHit2D[] castCollisions = new RaycastHit2D[1];
 
-            //if (Physics2D.CircleCastNonAlloc(pos,circleCastRadius,)
-            //{
-            //    if (hitInfo.collider.gameObject.GetComponent<Root>() != null)
-            //    {
-            //        Destroy(hitInfo.collider.gameObject);
-            //    }
-
-            //}
+            if (Physics2D.CircleCastNonAlloc(pos, circleCastRadius,Camera.main.transform.forward,castCollisions) > 0)
+            {
+            Debug.Log("entrato");
+                if (castCollisions[0].collider.gameObject.GetComponent<Root>())
+                {
+                    Destroy(gameObject);
+                Debug.Log("Elimina");
+                    
+                }
+            }
         }
     }
-}
+
