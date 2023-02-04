@@ -8,13 +8,15 @@ public class DrawManager : MonoBehaviour, ManaConsumer
     GameObject currentLine;
     LineRenderer lineRenderer;
 
-
+    bool drawingMode;
     public List<Vector2> fingerPositions;
     public List<float> fingerPointsDistances;
+
 
     private void Start()
     {
         ManaControl.Instance.RegisterAsManaConsumer(this);
+        drawingMode = false;
     }
 
     private void OnDestroy()
@@ -23,42 +25,68 @@ public class DrawManager : MonoBehaviour, ManaConsumer
     }
 
     private void Update()
+
     {
-        // Click mouse destro porta a cancellare il disegno della radice
-        if (Input.GetMouseButtonDown(1)) // aggiungere && la radice ha un componente per identificarla
+        if (drawingMode)
         {
-            // Cancella disegno radice
-            TerminateRootDrawing();
-        }
-
-        // Rilascio mouse sinistro conferma la creazione fisica della radice
-        if (Input.GetMouseButtonUp(0))
-        {
-            RootGenerator.Instance.startGrowingRoot(fingerPositions);
-
-            TerminateRootDrawing();
-        }
-
-        // Click mouse sinistro fa partire la creazione della linea che la radice seguirà
-        if (Input.GetMouseButtonDown(0))
-        {
-            CreateLine();
-        }
-
-        // Pressione continuata mouse sinistro mantiene la modalità di disegno attiva 
-        if (Input.GetMouseButton(0))
-        {
-            if (ManaControl.Instance.currentMana > 0 || true)
+            //cancella disegno
+            if (Input.GetMouseButtonDown(1))
             {
-                Vector2 fingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                if (Vector2.Distance(fingerPos, fingerPositions[fingerPositions.Count - 1]) > 0.1f)
+                manaControl.ResetMana();
+                TerminateRootDrawing();
+            }
+            // Rilascio mouse sinistro conferma la creazione fisica della radice
+            if (Input.GetMouseButtonUp(0))
+            {
+                RootGenerator.Instance.startGrowingRoot(fingerPositions);
+
+                TerminateRootDrawing();
+            }
+            if (Input.GetMouseButton(0))
+            {
+                if (manaControl.currentMana > 0 || true)
                 {
-                    UpdateLine(fingerPos);
+                    Vector2 fingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                    if (Vector2.Distance(fingerPos, fingerPositions[fingerPositions.Count - 1]) > 0.1f)
+                    {
+                        UpdateLine(fingerPos);
+                    }
+                }
+
+            }
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hitInfo))
+                {
+                    if (hitInfo.collider.gameObject.GetComponent<Root>() != null)
+                    {
+                        Destroy(hitInfo.collider.gameObject);
+                    }
+
                 }
             }
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hitInfo))
+                {
+                    if (hitInfo.collider.gameObject.GetComponent<FertileTerrain>() != null)
+                    {
+                        Debug.Log("Start drawing");
+                        drawingMode = true;
+                        CreateLine();
+                    }
 
+                }
+            }
         }
+
     }
 
     // To call when I either cancel with the right mouse button or when I release the left mouse button
@@ -69,6 +97,7 @@ public class DrawManager : MonoBehaviour, ManaConsumer
         lineRenderer = null;
         fingerPositions = new List<Vector2>();
         ResetFingerDistances();
+        drawingMode = false;
     }
 
     void UpdateLine(Vector2 newFingerPos)
