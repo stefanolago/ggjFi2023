@@ -251,6 +251,21 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.DrawWireSphere(groundCheck.transform.position, groundCheckerSize);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Pickupable pickupable =  collision.GetComponent<Pickupable>();
+        if(pickupable != null)
+        {
+            TakePickUp(pickupable.manaToGive);
+
+        }
+    }
+
+    private void TakePickUp(int manaToGive)
+    {
+        ManaControl.Instance.maxMana += manaToGive;
+    }
 }
 
 
