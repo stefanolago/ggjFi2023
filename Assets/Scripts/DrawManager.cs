@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,7 +22,7 @@ public class DrawManager : MonoBehaviour
     }
     private void Update()
     {
-       
+
         if (Input.GetMouseButtonDown(1)) // aggiungere && la radice ha un componente per identificarla
         {
             DestroyRoot();
@@ -32,49 +31,48 @@ public class DrawManager : MonoBehaviour
         // i designer vogliono che si possa fare una sola radice alla volta,
         // non saprei quando mettere l'olready oneRoot a true, pensavo
         // nel .GetMouseButtonUp(0) però vanno aggiunti dei controllli, intanto pusho
-        if (alreadyOneRoot == false)
+
+        if (Input.GetMouseButtonUp(0))
         {
-            if (Input.GetMouseButtonUp(0))
-            {
-                Debug.Log("Creazione Root");
-                alreadyOneRoot = true;
-            }
-
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                CreateLine();
-            }
-
-            if (Input.GetMouseButton(0))
-            {
-                if (manaControl.currentMana > 0)
-                {
-                    Vector2 FingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-                    if (Vector2.Distance(FingerPos, fingerPositions[fingerPositions.Count - 1]) > 0.1f)
-                    {
-                        UpdateLine(FingerPos);
-                    }
-                }
-
-                if (Input.GetMouseButtonDown(1))
-                {
-                    Debug.Log("Cancellare Root");
-                    Destroy(currentLine);
-                    manaControl.ResetMana();
-                    resetFingerDistances();
-                }
-            }
-
-
+            Debug.Log("Creazione Root");
+            alreadyOneRoot = true;
         }
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            CreateLine();
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            if (manaControl.currentMana > 0)
+            {
+                Vector2 FingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                if (Vector2.Distance(FingerPos, fingerPositions[fingerPositions.Count - 1]) > 0.1f)
+                {
+                    UpdateLine(FingerPos);
+                }
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                Debug.Log("Cancellare Root");
+                Destroy(currentLine);
+                manaControl.ResetMana();
+                resetFingerDistances();
+            }
+        }
+
+
+
 
     }
 
     private void DestroyRoot()
     {
-        alreadyOneRoot= false;
+        alreadyOneRoot = false;
         Debug.Log("root distrutta");
     }
 
@@ -88,7 +86,7 @@ public class DrawManager : MonoBehaviour
         fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         lineRenderer.SetPosition(0, fingerPositions[0]);
         lineRenderer.SetPosition(1, fingerPositions[1]);
-        
+
 
 
     }
