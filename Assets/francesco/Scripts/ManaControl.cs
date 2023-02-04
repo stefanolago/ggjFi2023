@@ -8,12 +8,14 @@ public class ManaControl : MonoBehaviour
     public int maxMana;
     public int currentMana;
     public int distanceToToggleOneMana;
-    public float rootLenght = 0;
     public DrawManager drawManager;
 
     public bool temp;
-    
 
+    private void Start()
+    {
+        currentMana = maxMana;
+    }
     private void Update()
     {
         if(temp)
@@ -21,15 +23,28 @@ public class ManaControl : MonoBehaviour
             float[] pointDistances = drawManager.fingerPointsDistances.ToArray();
             float totalDistances = pointDistances.Sum();
             //calcolo togli punti
+            Debug.Log(totalDistances);
             int temporanea = (int)Mathf.Round(totalDistances / distanceToToggleOneMana);
-            for(int i = 0; i < temporanea; i++)
-            {
-                currentMana--;
-            }
+
+             currentMana = maxMana- temporanea;
+
             temp = false;
             
         }
     }
+
+    public void ResetMana()
+    {
+        currentMana= maxMana;
+        
+    }
+
+
+
+
+    
+
+
 
 
 

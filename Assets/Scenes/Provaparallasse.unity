@@ -227,7 +227,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133661438}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.236017, y: -3.2263632, z: -4.3311915}
+  m_LocalPosition: {x: 18.236017, y: -13.4, z: -4.3311915}
   m_LocalScale: {x: 28.418524, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -338,7 +338,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 285372318}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.723983, y: -3.2263632, z: -4.3311915}
+  m_LocalPosition: {x: -7.723983, y: -13.3, z: -4.3311915}
   m_LocalScale: {x: 16.355986, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -381,7 +381,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.29214135, g: 0.4170004, b: 0.6132076, a: 0}
+  m_BackGroundColor: {r: 0.26139194, g: 0.40236732, b: 0.6226415, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -394,11 +394,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -0.27
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 37.4
   orthographic: 1
-  orthographic size: 15.57
+  orthographic size: 17
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -422,12 +422,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417262502}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.9, y: 0, z: -102.28}
+  m_LocalPosition: {x: 7.4500003, y: -5, z: -107.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1157042356}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &691343969
 GameObject:
@@ -592,8 +592,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 760388678, guid: 3ec0f52ccaf1e2e488c21ef840f2e80b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 39fb134d6e195884f84ad7c450e81012, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -611,11 +611,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157042353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.35, y: -5, z: -5.42}
+  m_LocalPosition: {x: 15.35, y: -15.29, z: -5.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 417262505}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -632,18 +631,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08044577, y: -0.0089383125}
+  m_Offset: {x: 0.08044577, y: -0.033055186}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.26, y: 5.66}
+    oldSize: {x: 5.51, y: 7}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.5575037, y: 5.5228558}
+  m_Size: {x: 4.5575037, y: 6.1820545}
   m_EdgeRadius: 0
 --- !u!114 &1157042359
 MonoBehaviour:
@@ -717,6 +716,7 @@ MonoBehaviour:
   manaControl: {fileID: 2133269410}
   rootPrefab: {fileID: 1160411418115931207, guid: 6e778f133d30a564d831d6a847aed013, type: 3}
   rootShadowPrefab: {fileID: 1160411418115931207, guid: 7f23fad09d6c7554a96cfc021c8800c3, type: 3}
+  fingerPositions: []
   fingerPointsDistances: []
 --- !u!4 &1339162351
 Transform:
@@ -837,8 +837,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473530159}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.3639827, y: 1.7536368, z: -4.3311915}
-  m_LocalScale: {x: 9.072658, y: 1, z: 1}
+  m_LocalPosition: {x: -7, y: 8.3, z: -4.54}
+  m_LocalScale: {x: 21.3321, y: 1.5330895, z: 2.3512516}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 691343970}
@@ -948,7 +948,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1588794471}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.2360172, y: -3.2263632, z: -4.3311915}
+  m_LocalPosition: {x: 2.2360172, y: -13.4, z: -4.3311915}
   m_LocalScale: {x: 3.578236, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1095,10 +1095,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd04fadb1ea7c54f9644af3938c930d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMana: 0
+  maxMana: 100
   currentMana: 0
-  distanceToToggleOneMana: 0
-  rootLenght: 0
+  distanceToToggleOneMana: 2
   drawManager: {fileID: 1339162350}
   temp: 0
 --- !u!4 &2133269411
