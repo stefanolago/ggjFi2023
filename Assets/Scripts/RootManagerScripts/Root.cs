@@ -13,6 +13,23 @@ public class Root : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        CheckDestroy();
+    }
+
+    private static void CheckDestroy()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            {
+                if (hitInfo.collider.gameObject.GetComponent<Root>() != null)
+                {
+                    Destroy(hitInfo.collider.gameObject);
+                    Debug.Log("Distrutto");
+                }
+
+            }
+        }
     }
 }

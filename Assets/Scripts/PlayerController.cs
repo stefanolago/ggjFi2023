@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public float jumpAbortForce;
     public float stoppingSpeed;
       
-    public bool EndGame;
+    public bool endGame;
    
    
 
@@ -61,11 +61,12 @@ public class PlayerController : MonoBehaviour
         state = PlayerState.Grounded;
         animator = GetComponent<Animator>();
         currentHp = maxHp;
+        endGame = false;
     }
 
     private void Update()
     {
-        if (!EndGame)
+        if (!endGame)
         {
 
             if (isGrounded && Input.GetButtonDown("Jump"))
@@ -106,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!EndGame)
+        if (!endGame)
         {
 
             ResetMotion();
@@ -231,7 +232,19 @@ public class PlayerController : MonoBehaviour
 
     internal void ReciveDamage(Vector2 bulletDirection)
     {
-        throw new NotImplementedException();
+        currentHp--;
+        if(currentHp <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        endGame = true;
+        animator.SetBool("dead", true);
+        Destroy(gameObject);
+
     }
 
     private void OnDrawGizmos()
