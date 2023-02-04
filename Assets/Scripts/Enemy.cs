@@ -16,19 +16,7 @@ public class Enemy : MonoBehaviour
         bulletStrenght = bulletPrefab.GetComponent<Bullet>().strengh;
     }
     private void Update()
-    {
-       if(time < timeBetweenShot)
-        {
-            time += Time.deltaTime;
-        }
-        else
-        {
-            Shoot();
-            time = 0;
-        }
-           
-        
-    }
+    {}
 
 
     public void Shoot()
