@@ -39,7 +39,7 @@ public class DrawManager : MonoBehaviour, ManaConsumer
             // Rilascio mouse sinistro conferma la creazione fisica della radice
             if (Input.GetMouseButtonUp(0))
             {
-                RootGenerator.Instance.startGrowingRoot(fingerPositions);
+                RootGenerator.Instance.StartGrowingRoot(fingerPositions, ManaConsumed());
 
                 TerminateRootDrawing();
             }

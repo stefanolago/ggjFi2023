@@ -29,27 +29,12 @@ public class ManaControl : Singleton<ManaControl>
 
     private void FixedUpdate()
     {
-        /*if(usingMana)
-        {
-            float[] pointDistances = drawManager.fingerPointsDistances.ToArray();
-            float totalDistances = pointDistances.Sum();
-            //calcolo togli punti
-            
-            int temporanea = (int)Mathf.Round(totalDistances / distanceToToggleOneMana);
-
-             currentMana = maxMana- temporanea;
-
-            usingMana = false;
-            
-        }*/
         int consumedMana = 0;
         for (int i=0; i<manaConsumers.Count; i++)
         {
             consumedMana += manaConsumers[i].ManaConsumed();
         }
         Instance.currentMana = maxMana - consumedMana;
-
-        Debug.Log("Current mana: " + Instance.currentMana);
     }
 
     public void ResetMana()
