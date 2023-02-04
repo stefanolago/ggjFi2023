@@ -39,7 +39,6 @@ public class DrawManager : MonoBehaviour
         // Click mouse sinistro fa partire la creazione della linea che la radice seguirà
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Start drawing");
             CreateLine();
         }
 
@@ -78,7 +77,7 @@ public class DrawManager : MonoBehaviour
 
         float tempDistance = Vector3.Distance(fingerPositions[fingerPositions.Count - 1], fingerPositions[fingerPositions.Count - 2]);
         fingerPointsDistances.Add(tempDistance);
-        manaControl.temp = true;
+        manaControl.usingMana = true;
 
     }
 
