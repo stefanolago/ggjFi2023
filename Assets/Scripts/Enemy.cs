@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public float timeBetweenShot;
     public GameObject bulletPrefab;
-    float bulletStrenght;
+    public float bulletStrenght;
     public Transform shootPosition;
     Rigidbody2D rigidbodyBullet;
     float time;
@@ -34,8 +34,8 @@ public class Enemy : MonoBehaviour
     public void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab,shootPosition.position,Quaternion.identity);
-         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
-        rigidbody.AddForce(Vector2.right * Time.deltaTime * bulletStrenght, ForceMode2D.Impulse);
+        Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
+        rigidbody.AddForce(Vector2.right * bulletStrenght, ForceMode2D.Impulse);
        
     }
 }
