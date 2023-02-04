@@ -1,16 +1,18 @@
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class ManaControl : Singleton<ManaControl>
 {
-    public int maxMana;
-    public int currentMana;
-    public int distanceToToggleOneMana;
-    public List<ManaConsumer> manaConsumers = new List<ManaConsumer>();
+    public int maxMana = 100;
+    public int currentMana { get; private set; }
 
-    public bool usingMana;
+    private List<ManaConsumer> manaConsumers = new List<ManaConsumer>();
+
+    public TextMeshProUGUI displayText;
+
 
     private void Start()
     {
@@ -35,12 +37,15 @@ public class ManaControl : Singleton<ManaControl>
             consumedMana += manaConsumers[i].ManaConsumed();
         }
         Instance.currentMana = maxMana - consumedMana;
+        displayText.text = "Mana: " + (currentMana > 0 ? currentMana : 0);
     }
 
     public void ResetMana()
     {
         currentMana= maxMana;
     }
+
+    
 
 
 

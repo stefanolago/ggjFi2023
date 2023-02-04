@@ -10,7 +10,8 @@ public class DrawManager : MonoBehaviour, ManaConsumer
 
     bool drawingMode;
     public List<Vector2> fingerPositions;
-    public List<float> fingerPointsDistances;
+    //public List<float> fingerPointsDistances;
+    private float manaConsumption = 0;
 
 
     private void Start()
@@ -45,7 +46,7 @@ public class DrawManager : MonoBehaviour, ManaConsumer
             }
             if (Input.GetMouseButton(0))
             {
-                if (ManaControl.Instance.currentMana > 0 || true)
+                if (ManaControl.Instance.currentMana > 0)
                 {
                     Vector2 fingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -68,7 +69,6 @@ public class DrawManager : MonoBehaviour, ManaConsumer
                     FertileTerrain fertailterrain = hitInfo.collider.gameObject.GetComponent<FertileTerrain>();
                     if (fertailterrain != null && !fertailterrain.rootAlreadyPlanted)
                     {
-                        Debug.Log("Start drawing");
                         drawingMode = true;
                         fertailterrain.rootAlreadyPlanted = true;
                         CreateLine();
@@ -87,7 +87,7 @@ public class DrawManager : MonoBehaviour, ManaConsumer
         currentLine = null;
         lineRenderer = null;
         fingerPositions = new List<Vector2>();
-        ResetFingerDistances();
+        ResetManaConsumption();
         drawingMode = false;
     }
 
@@ -98,8 +98,8 @@ public class DrawManager : MonoBehaviour, ManaConsumer
         lineRenderer.positionCount++;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);
 
-        float tempDistance = Vector3.Distance(fingerPositions[fingerPositions.Count - 1], fingerPositions[fingerPositions.Count - 2]);
-        fingerPointsDistances.Add(tempDistance);
+        float distance = Vector3.Distance(fingerPositions[fingerPositions.Count - 1], fingerPositions[fingerPositions.Count - 2]);
+        manaConsumption += distance;
 
     }
 
@@ -114,13 +114,14 @@ public class DrawManager : MonoBehaviour, ManaConsumer
         lineRenderer.SetPosition(1, fingerPositions[1]);
     }
 
-    public void ResetFingerDistances()
+    public void ResetManaConsumption()
     {
-        fingerPointsDistances.Clear();
+        manaConsumption = 0;
     }
 
     public int ManaConsumed()
     {
-        return 10;
+
+        return Mathf.RoundToInt(manaConsumption);
     }
 }

@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -14,6 +15,9 @@ public class PlayerController : MonoBehaviour
 {
     public int maxHp;
     int currentHp;
+    public TextMeshProUGUI healthDisplayText;
+
+
     public float maxSpeed;
     public float acceleration;
     public float jumpForce;
@@ -21,10 +25,6 @@ public class PlayerController : MonoBehaviour
     public float stoppingSpeed;
       
     public bool endGame;
-   
-   
-
-
    
     Vector2 moveVector;
     private Rigidbody2D body;
@@ -88,6 +88,8 @@ public class PlayerController : MonoBehaviour
             {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
+
+            healthDisplayText.text = "Health: " + currentHp;
         }
 
         //Audio Passi
