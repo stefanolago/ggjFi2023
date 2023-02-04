@@ -65,10 +65,12 @@ public class DrawManager : MonoBehaviour, ManaConsumer
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hitInfo))
                 {
-                    if (hitInfo.collider.gameObject.GetComponent<FertileTerrain>() != null)
+                    FertileTerrain fertailterrain = hitInfo.collider.gameObject.GetComponent<FertileTerrain>();
+                    if (fertailterrain != null && !fertailterrain.rootAlreadyPlanted)
                     {
                         Debug.Log("Start drawing");
                         drawingMode = true;
+                        fertailterrain.rootAlreadyPlanted = true;
                         CreateLine();
                     }
 
