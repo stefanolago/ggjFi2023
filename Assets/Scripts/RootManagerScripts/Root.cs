@@ -21,18 +21,14 @@ public class Root : MonoBehaviour, ManaConsumer
         edgeCollider = gameObject.GetComponent<EdgeCollider2D>();
         rootPoints = new List<Vector2>();
         addedRootPoints = new List<Vector2>();
-        currentDrawnRootPointIndex = 0;
     }
 
     public void StartGrowing(List<Vector2> points, int manaConsumed)
     {
         rootPoints = new List<Vector2>(points);
+        currentDrawnRootPointIndex = 0;
 
-        lineRenderer.SetPosition(0, rootPoints[0]);
-        addedRootPoints.Add(rootPoints[0]);
-        lineRenderer.SetPosition(1, rootPoints[1]);
-        addedRootPoints.Add(rootPoints[1]);
-        currentDrawnRootPointIndex = 2;
+        ManaControl.Instance.RegisterAsManaConsumer(this);
 
     }
 
