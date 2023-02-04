@@ -89,7 +89,9 @@ public class PlayerController : MonoBehaviour
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
 
-            healthDisplayText.text = "Health: " + currentHp;
+            if(healthDisplayText != null) { 
+                healthDisplayText.text = "Health: " + currentHp;
+            }
         }
 
         //Audio Passi

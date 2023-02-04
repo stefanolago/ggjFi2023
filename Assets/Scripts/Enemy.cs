@@ -12,11 +12,19 @@ public class Enemy : MonoBehaviour
     float time;
 
     private void Start()
-    {
-        bulletStrenght = bulletPrefab.GetComponent<Bullet>().strengh;
-    }
-    private void Update()
     {}
+    private void Update()
+    {
+        //if(time < timeBetweenShot)
+        //{
+        //    time += Time.deltaTime;
+        //}
+        //else
+        //{
+        //    Shoot();
+        //    time = 0;
+        //}
+    }
 
 
     public void Shoot()
