@@ -50,5 +50,23 @@ public class Root : MonoBehaviour, ManaConsumer
     public int ManaConsumed()
     {
         return 10;
+        CheckDestroy();
+    }
+
+    private static void CheckDestroy()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            {
+                if (hitInfo.collider.gameObject.GetComponent<Root>() != null)
+                {
+                    Destroy(hitInfo.collider.gameObject);
+                    Debug.Log("Distrutto");
+                }
+
+            }
+        }
     }
 }

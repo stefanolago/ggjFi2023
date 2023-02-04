@@ -19,10 +19,10 @@ public class DrawManager : MonoBehaviour, ManaConsumer
         drawingMode = false;
     }
 
-    private void OnDestroy()
-    {
-        ManaControl.Instance.RemoveAsManaConsumer(this);
-    }
+    //private void OnDestroy()
+    //{
+    //    ManaControl.Instance.RemoveAsManaConsumer(this);
+    //}
 
     private void Update()
 
@@ -59,18 +59,7 @@ public class DrawManager : MonoBehaviour, ManaConsumer
         }
         else
         {
-            if (Input.GetMouseButtonDown(1))
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hitInfo))
-                {
-                    if (hitInfo.collider.gameObject.GetComponent<Root>() != null)
-                    {
-                        Destroy(hitInfo.collider.gameObject);
-                    }
-
-                }
-            }
+           
             if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

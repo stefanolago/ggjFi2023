@@ -8,7 +8,7 @@ public class ManaControl : Singleton<ManaControl>
     public int maxMana;
     public int currentMana;
     public int distanceToToggleOneMana;
-    public List<ManaConsumer> manaConsumers;
+    public List<ManaConsumer> manaConsumers = new List<ManaConsumer>();
 
     public bool usingMana;
 
