@@ -159,6 +159,7 @@ public class PlayerController : MonoBehaviour
 
     bool isGrounded;
     [SerializeField] Transform groundCheck;
+    public float groundCheckerSize;
     public LayerMask groundMask;
 
 
@@ -310,7 +311,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckForGround()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.3f, groundMask);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckerSize, groundMask);
     }
 
     private void CheckJump()
@@ -349,6 +350,11 @@ public class PlayerController : MonoBehaviour
     internal void ReciveDamage(Vector2 bulletDirection)
     {
         throw new NotImplementedException();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(groundCheck.transform.position, groundCheckerSize);
     }
 }
 
