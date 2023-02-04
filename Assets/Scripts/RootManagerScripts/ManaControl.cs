@@ -11,7 +11,7 @@ public class ManaControl : Singleton<ManaControl>
 
     private List<ManaConsumer> manaConsumers = new List<ManaConsumer>();
 
-    public TextMeshProUGUI displayText;
+    public TextMeshProUGUI manaText;
 
 
     private void Start()
@@ -37,7 +37,10 @@ public class ManaControl : Singleton<ManaControl>
             consumedMana += manaConsumers[i].ManaConsumed();
         }
         Instance.currentMana = maxMana - consumedMana;
-        displayText.text = "Mana: " + (currentMana > 0 ? currentMana : 0);
+
+        if (manaText != null) { 
+            manaText.text = "Mana: " + (currentMana > 0 ? currentMana : 0);
+        }
     }
 
     public void ResetMana()
