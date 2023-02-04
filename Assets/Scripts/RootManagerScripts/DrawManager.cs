@@ -1,12 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DrawManager : MonoBehaviour
+public class DrawManager : MonoBehaviour, ManaConsumer
 {
-    [Header("Mana")]
-    public ManaControl manaControl;
     [Header("Root/Line")]
-    public GameObject rootPrefab;
     public GameObject rootShadowPrefab;
     GameObject currentLine;
     LineRenderer lineRenderer;
@@ -17,14 +14,20 @@ public class DrawManager : MonoBehaviour
 
     private void Start()
     {
+        ManaControl.Instance.RegisterAsManaConsumer(this);
     }
+
+    private void OnDestroy()
+    {
+        ManaControl.Instance.RemoveAsManaConsumer(this);
+    }
+
     private void Update()
     {
         // Click mouse destro porta a cancellare il disegno della radice
         if (Input.GetMouseButtonDown(1)) // aggiungere && la radice ha un componente per identificarla
         {
             // Cancella disegno radice
-            manaControl.ResetMana();
             TerminateRootDrawing();
         }
 
@@ -45,7 +48,7 @@ public class DrawManager : MonoBehaviour
         // Pressione continuata mouse sinistro mantiene la modalità di disegno attiva 
         if (Input.GetMouseButton(0))
         {
-            if (manaControl.currentMana > 0 || true)
+            if (ManaControl.Instance.currentMana > 0 || true)
             {
                 Vector2 fingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -65,7 +68,7 @@ public class DrawManager : MonoBehaviour
         currentLine = null;
         lineRenderer = null;
         fingerPositions = new List<Vector2>();
-        resetFingerDistances();
+        ResetFingerDistances();
     }
 
     void UpdateLine(Vector2 newFingerPos)
@@ -77,7 +80,6 @@ public class DrawManager : MonoBehaviour
 
         float tempDistance = Vector3.Distance(fingerPositions[fingerPositions.Count - 1], fingerPositions[fingerPositions.Count - 2]);
         fingerPointsDistances.Add(tempDistance);
-        manaControl.usingMana = true;
 
     }
 
@@ -92,9 +94,13 @@ public class DrawManager : MonoBehaviour
         lineRenderer.SetPosition(1, fingerPositions[1]);
     }
 
-    public void resetFingerDistances()
+    public void ResetFingerDistances()
     {
         fingerPointsDistances.Clear();
     }
 
+    public int ManaConsumed()
+    {
+        return 10;
+    }
 }

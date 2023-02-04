@@ -29,9 +29,9 @@ public class ManaControl : Singleton<ManaControl>
 
     private void FixedUpdate()
     {
-        if(usingMana)
+        /*if(usingMana)
         {
-            /*float[] pointDistances = drawManager.fingerPointsDistances.ToArray();
+            float[] pointDistances = drawManager.fingerPointsDistances.ToArray();
             float totalDistances = pointDistances.Sum();
             //calcolo togli punti
             
@@ -39,15 +39,22 @@ public class ManaControl : Singleton<ManaControl>
 
              currentMana = maxMana- temporanea;
 
-            usingMana = false;*/
+            usingMana = false;
             
+        }*/
+        int consumedMana = 0;
+        for (int i=0; i<manaConsumers.Count; i++)
+        {
+            consumedMana += manaConsumers[i].ManaConsumed();
         }
+        Instance.currentMana = maxMana - consumedMana;
+
+        Debug.Log("Current mana: " + Instance.currentMana);
     }
 
     public void ResetMana()
     {
         currentMana= maxMana;
-        
     }
 
 
