@@ -15,27 +15,27 @@ public class Enemy : MonoBehaviour
     {
         bulletStrenght = bulletPrefab.GetComponent<Bullet>().strengh;
     }
-    private void Update()
-    {
-       if(time < timeBetweenShot)
-        {
-            time += Time.deltaTime;
-        }
-        else
-        {
-            Shoot();
-            time = 0;
-        }
+    //private void Update()
+    //{
+    //   if(time < timeBetweenShot)
+    //    {
+    //        time += Time.deltaTime;
+    //    }
+    //    else
+    //    {
+    //        Shoot();
+    //        time = 0;
+    //    }
            
         
-    }
+    //}
 
 
     public void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab,shootPosition.position,Quaternion.identity);
          Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
-        rigidbody.AddForce(Vector2.right * Time.deltaTime * bulletStrenght, ForceMode2D.Impulse);
+        rigidbody.AddForce(-transform.right * Time.deltaTime * bulletStrenght, ForceMode2D.Impulse);
        
     }
 }
