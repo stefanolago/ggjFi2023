@@ -14,86 +14,61 @@ public class DrawManager : MonoBehaviour
 
     public List<Vector2> fingerPositions;
     public List<float> fingerPointsDistances;
-    bool alreadyOneRoot = false;
 
     private void Start()
     {
-        alreadyOneRoot = false;
     }
     private void Update()
     {
-
+        // Click mouse destro porta a cancellare il disegno della radice
         if (Input.GetMouseButtonDown(1)) // aggiungere && la radice ha un componente per identificarla
         {
-            DestroyRoot();
+            // Cancella disegno radice
+            manaControl.ResetMana();
+            TerminateRootDrawing();
         }
 
-        // i designer vogliono che si possa fare una sola radice alla volta,
-        // non saprei quando mettere l'olready oneRoot a true, pensavo
-        // nel .GetMouseButtonUp(0) però vanno aggiunti dei controllli, intanto pusho
-
+        // Rilascio mouse sinistro conferma la creazione fisica della radice
         if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("Creazione Root");
-            alreadyOneRoot = true;
+            RootGenerator.Instance.startGrowingRoot(fingerPositions);
+
+            TerminateRootDrawing();
         }
 
-
+        // Click mouse sinistro fa partire la creazione della linea che la radice seguirà
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("Start drawing");
             CreateLine();
         }
 
+        // Pressione continuata mouse sinistro mantiene la modalità di disegno attiva 
         if (Input.GetMouseButton(0))
         {
-            if (manaControl.currentMana > 0)
+            if (manaControl.currentMana > 0 || true)
             {
-                Vector2 FingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 fingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                if (Vector2.Distance(FingerPos, fingerPositions[fingerPositions.Count - 1]) > 0.1f)
+                if (Vector2.Distance(fingerPos, fingerPositions[fingerPositions.Count - 1]) > 0.1f)
                 {
-                    UpdateLine(FingerPos);
+                    UpdateLine(fingerPos);
                 }
             }
 
-            if (Input.GetMouseButtonDown(1))
-            {
-                Debug.Log("Cancellare Root");
-                Destroy(currentLine);
-                manaControl.ResetMana();
-                resetFingerDistances();
-            }
         }
-
-
-
-
     }
 
-    private void DestroyRoot()
+    // To call when I either cancel with the right mouse button or when I release the left mouse button
+    void TerminateRootDrawing()
     {
-        alreadyOneRoot = false;
-        Debug.Log("root distrutta");
+        Destroy(currentLine);
+        currentLine = null;
+        lineRenderer = null;
+        fingerPositions = new List<Vector2>();
+        resetFingerDistances();
     }
 
-    public void CreateLine()
-    {
-
-        currentLine = Instantiate(rootPrefab, Vector3.zero, Quaternion.identity);
-        lineRenderer = currentLine.GetComponent<LineRenderer>();
-        fingerPositions.Clear();
-        fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        lineRenderer.SetPosition(0, fingerPositions[0]);
-        lineRenderer.SetPosition(1, fingerPositions[1]);
-
-
-
-    }
-    public void resetFingerDistances()
-    {
-        fingerPointsDistances.Clear();
-    }
     void UpdateLine(Vector2 newFingerPos)
     {
 
@@ -106,10 +81,21 @@ public class DrawManager : MonoBehaviour
         manaControl.temp = true;
 
     }
-    public void AddPosition()
-    {
-        fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
+    public void CreateLine()
+    {
+        currentLine = Instantiate(rootShadowPrefab, Vector3.zero, Quaternion.identity);
+        lineRenderer = currentLine.GetComponent<LineRenderer>();
+        fingerPositions.Clear();
+        fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        lineRenderer.SetPosition(0, fingerPositions[0]);
+        lineRenderer.SetPosition(1, fingerPositions[1]);
     }
+
+    public void resetFingerDistances()
+    {
+        fingerPointsDistances.Clear();
+    }
+
 }

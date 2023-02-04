@@ -23,7 +23,7 @@ public class ManaControl : MonoBehaviour
             float[] pointDistances = drawManager.fingerPointsDistances.ToArray();
             float totalDistances = pointDistances.Sum();
             //calcolo togli punti
-            Debug.Log(totalDistances);
+            
             int temporanea = (int)Mathf.Round(totalDistances / distanceToToggleOneMana);
 
              currentMana = maxMana- temporanea;
