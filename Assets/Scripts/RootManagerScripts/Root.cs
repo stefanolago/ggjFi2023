@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Root : MonoBehaviour, ManaConsumer
 {
-
+    public float circleCastRadius;
 
     private LineRenderer lineRenderer;
 
@@ -65,8 +65,9 @@ public class Root : MonoBehaviour, ManaConsumer
     {
         if (Input.GetMouseButtonDown(1))
         {
-            Vector3 pos =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //if (Physics2D.CircleCastNonAlloc(pos,0.2,)
+            Vector2 pos =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            //if (Physics2D.CircleCastNonAlloc(pos,circleCastRadius,)
             //{
             //    if (hitInfo.collider.gameObject.GetComponent<Root>() != null)
             //    {
