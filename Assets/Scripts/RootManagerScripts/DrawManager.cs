@@ -33,7 +33,7 @@ public class DrawManager : MonoBehaviour, ManaConsumer
             if (Input.GetMouseButtonDown(1))
             {
 
-                manaControl.ResetMana();
+                ManaControl.Instance.ResetMana();
                 TerminateRootDrawing();
             }
             // Rilascio mouse sinistro conferma la creazione fisica della radice
@@ -45,7 +45,7 @@ public class DrawManager : MonoBehaviour, ManaConsumer
             }
             if (Input.GetMouseButton(0))
             {
-                if (manaControl.currentMana > 0 || true)
+                if (ManaControl.Instance.currentMana > 0 || true)
                 {
                     Vector2 fingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
