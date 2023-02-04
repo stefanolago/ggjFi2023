@@ -7,7 +7,7 @@ public class DrawManager : MonoBehaviour
     [Header("Mana")]
     public ManaControl manaControl;
     [Header("Root/Line")]
-    public GameObject rootPrefab;
+    //public GameObject rootPrefab;
     public GameObject rootShadowPrefab;
     GameObject currentLine;
     LineRenderer lineRenderer;
@@ -36,8 +36,10 @@ public class DrawManager : MonoBehaviour
         {
             if (Input.GetMouseButtonUp(0))
             {
-                Debug.Log("Creazione Root");
-                alreadyOneRoot = true;
+                resetFingerDistances();
+                Destroy(currentLine);
+                RootGenerator.Instance.startGrowingRoot(fingerPositions);
+                //alreadyOneRoot = true;
             }
 
 
@@ -48,7 +50,7 @@ public class DrawManager : MonoBehaviour
 
             if (Input.GetMouseButton(0))
             {
-                if (manaControl.currentMana > 0)
+                if (manaControl.currentMana > 0 || true)
                 {
                     Vector2 FingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -81,7 +83,7 @@ public class DrawManager : MonoBehaviour
     public void CreateLine()
     {
 
-        currentLine = Instantiate(rootPrefab, Vector3.zero, Quaternion.identity);
+        currentLine = Instantiate(rootShadowPrefab, Vector3.zero, Quaternion.identity);
         lineRenderer = currentLine.GetComponent<LineRenderer>();
         fingerPositions.Clear();
         fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
