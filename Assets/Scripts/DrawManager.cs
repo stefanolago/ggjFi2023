@@ -1,63 +1,87 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class DrawManager : MonoBehaviour
 {
-
-    public float maxMana = 100;
-    public float currentMana;
+    [Header("Mana")]
+    public ManaControl manaControl;
+    [Header("Root/Line")]
     public GameObject rootPrefab;
-    public GameObject currentLine;
-    public LineRenderer lineRenderer;
-    public EdgeCollider2D edgeCollider;
-    public List<Vector2> fingerPositions;
+    public GameObject rootShadowPrefab;
+    GameObject currentLine;
+    LineRenderer lineRenderer;
+
+
+     public  List<Vector2> fingerPositions;
+    public List<float> fingerPointsDistances;
 
     private void Start()
     {
-        currentMana = maxMana;
+        
     }
     private void Update()
     {
-        //Debug.Log(Input.mousePosition);
-
-        if(Input.GetMouseButtonDown(0))
-        {
-            CreateLine();
-            Debug.Log("Creazione");
-        }
-        if (Input.GetMouseButton(0))
-        {
-            Vector2 tempFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log(tempFingerPos);
-
-            if (Vector2.Distance(tempFingerPos, fingerPositions[fingerPositions.Count-1]) > 0.1f)
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    Debug.Log("Creazione Root");
+        //}
+       
+            if (Input.GetMouseButtonDown(0))
             {
-                UpdateLine(tempFingerPos);
+                CreateLine();
             }
+
+            if (Input.GetMouseButton(0))
+            {             
+                Vector2 FingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+               
+                if (Vector2.Distance(FingerPos, fingerPositions[fingerPositions.Count - 1]) > 0.1f)
+                {
+                    UpdateLine(FingerPos);
+                }
+
+                if(Input.GetMouseButtonDown(1))
+                {
+                    Debug.Log("Cancellare Root");
+                   
+                }
+            
+            
+           
         }
+       
     }
     public void CreateLine()
     {
-        currentLine = Instantiate(rootPrefab,Vector3.zero,Quaternion.identity);
+
+       
+        currentLine = Instantiate(rootPrefab, Vector3.zero, Quaternion.identity);
         lineRenderer = currentLine.GetComponent<LineRenderer>();
-        edgeCollider = currentLine.GetComponent<EdgeCollider2D>();
         fingerPositions.Clear();
-        Invoke(nameof(AddPosition),0.1f);
+        fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         lineRenderer.SetPosition(0, fingerPositions[0]);
         lineRenderer.SetPosition(1, fingerPositions[1]);
-        edgeCollider.points = fingerPositions.ToArray();
+       
+        
     }
     void UpdateLine(Vector2 newFingerPos)
     {
+
         fingerPositions.Add(newFingerPos);
         lineRenderer.positionCount++;
-        lineRenderer.SetPosition(lineRenderer.positionCount -1, newFingerPos);
-        edgeCollider.points = fingerPositions.ToArray();
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);   
+        
+        float tempDistance = Vector3.Distance(fingerPositions[fingerPositions.Count], fingerPositions[fingerPositions.Count - 1]);
+        fingerPointsDistances.Add(tempDistance);       
+        manaControl.temp = true;
+
     }
     public void AddPosition()
     {
         fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        fingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
     }
 }
