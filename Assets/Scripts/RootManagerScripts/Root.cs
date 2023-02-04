@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Root : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +21,8 @@ public class Root : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            Vector3 pos =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (Physics2D.CircleCastNonAlloc(pos,0.2,)
             {
                 if (hitInfo.collider.gameObject.GetComponent<Root>() != null)
                 {
