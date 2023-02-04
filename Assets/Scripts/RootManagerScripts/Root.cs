@@ -5,7 +5,7 @@ using UnityEngine;
 public class Root : MonoBehaviour, ManaConsumer
 {
     public float circleCastRadius;
-   
+    private RaycastHit2D[] castCollisions;
 
     private LineRenderer lineRenderer;
 
@@ -70,9 +70,9 @@ public class Root : MonoBehaviour, ManaConsumer
 
     private void CheckDestroy()
     {
-
+        //Da finire
             Vector2 pos =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
-              RaycastHit2D[] castCollisions = new RaycastHit2D[1];
+       
 
             if (Physics2D.CircleCastNonAlloc(pos, circleCastRadius,Camera.main.transform.forward,castCollisions) > 0)
             {
