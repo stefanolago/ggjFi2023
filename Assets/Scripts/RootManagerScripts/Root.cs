@@ -39,7 +39,7 @@ public class Root : MonoBehaviour, ManaConsumer
     // Update is called once per frame
     void FixedUpdate()
     {
-        //fingerPositions.Add(newFingerPos);
+
         if (currentDrawnRootPointIndex < rootPoints.Count)
         {
             lineRenderer.positionCount++;
@@ -84,7 +84,7 @@ public class Root : MonoBehaviour, ManaConsumer
 
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        RaycastHit2D hit = Physics2D.CircleCast(worldPoint, 2.0f, Vector2.zero);
+        RaycastHit2D hit = Physics2D.CircleCast(worldPoint, 10.0f, Vector2.zero);
 
         if (hit.collider != null && hit.collider.gameObject == gameObject)
         {

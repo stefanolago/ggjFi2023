@@ -15,15 +15,15 @@ public class Enemy : MonoBehaviour
     {}
     private void Update()
     {
-        //if(time < timeBetweenShot)
-        //{
-        //    time += Time.deltaTime;
-        //}
-        //else
-        //{
-        //    Shoot();
-        //    time = 0;
-        //}
+        if (time < timeBetweenShot)
+        {
+            time += Time.deltaTime;
+        }
+        else
+        {
+            Shoot();
+            time = 0;
+        }
     }
 
 
