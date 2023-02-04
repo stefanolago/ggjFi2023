@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Root : MonoBehaviour, ManaConsumer
 {
-    public float circleCastRadius;
-    private RaycastHit2D[] castCollisions;
-
     private LineRenderer lineRenderer;
 
     private EdgeCollider2D edgeCollider;
@@ -68,22 +65,31 @@ public class Root : MonoBehaviour, ManaConsumer
         return manaConsumption;
     }
 
+    private void OnMouseDown()
+    {
+        Debug.Log("Test");
+    }
+
     private void CheckDestroy()
     {
+        Debug.Log("Check Destroy");
         //Da finire
-            Vector2 pos =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
-       
+        /*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
 
-            if (Physics2D.CircleCastNonAlloc(pos, circleCastRadius,Camera.main.transform.forward,castCollisions) > 0)
-            {
-            Debug.Log("entrato");
-                if (castCollisions[0].collider.gameObject.GetComponent<Root>())
-                {
-                    Destroy(gameObject);
-                Debug.Log("Elimina");
-                    
-                }
-            }
+        if (hit.collider != null && hit.collider.gameObject == gameObject)
+        {
+            Debug.Log("Mouse click inside game object: " + hit.collider.name);
+        }*/
+
+        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        RaycastHit2D hit = Physics2D.CircleCast(worldPoint, 2.0f, Vector2.zero);
+
+        if (hit.collider != null && hit.collider.gameObject == gameObject)
+        {
+            Debug.Log("Mouse click inside game object: " + hit.collider.name);
         }
     }
+}
 

@@ -262,7 +262,7 @@ public class PlayerController : MonoBehaviour
         if(pickupable != null)
         {
             TakePickUp(pickupable.manaToGive);
-
+            Destroy(collision.gameObject);
         }
     }
 
