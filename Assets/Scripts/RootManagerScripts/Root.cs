@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Root : MonoBehaviour, ManaConsumer
 {
+    public float circleCastRadius;
 
     private LineRenderer lineRenderer;
 
@@ -12,6 +13,7 @@ public class Root : MonoBehaviour, ManaConsumer
     private List<Vector2> addedRootPoints;
 
     private int currentDrawnRootPointIndex;
+
 
 
     // Start is called before the first frame update
@@ -59,15 +61,16 @@ public class Root : MonoBehaviour, ManaConsumer
     {
         if (Input.GetMouseButtonDown(1))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hitInfo))
-            {
-                if (hitInfo.collider.gameObject.GetComponent<Root>() != null)
-                {
-                    Destroy(hitInfo.collider.gameObject);
-                }
+            Vector2 pos =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            }
+            //if (Physics2D.CircleCastNonAlloc(pos,circleCastRadius,)
+            //{
+            //    if (hitInfo.collider.gameObject.GetComponent<Root>() != null)
+            //    {
+            //        Destroy(hitInfo.collider.gameObject);
+            //    }
+
+            //}
         }
     }
 }

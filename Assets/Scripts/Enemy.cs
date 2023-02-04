@@ -6,12 +6,15 @@ public class Enemy : MonoBehaviour
 {
     public float timeBetweenShot;
     public GameObject bulletPrefab;
-    public float bulletStrenght;
+    float bulletStrenght;
     public Transform shootPosition;
     Rigidbody2D rigidbodyBullet;
     float time;
 
-
+    private void Start()
+    {
+        bulletStrenght = bulletPrefab.GetComponent<Bullet>().strengh;
+    }
     private void Update()
     {
        if(time < timeBetweenShot)
