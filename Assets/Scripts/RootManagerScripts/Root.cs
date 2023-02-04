@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Root : MonoBehaviour, ManaConsumer
 {
-    public float circleCastRadius;
 
     private LineRenderer lineRenderer;
 
@@ -13,7 +12,7 @@ public class Root : MonoBehaviour, ManaConsumer
     private List<Vector2> addedRootPoints;
 
     private int currentDrawnRootPointIndex;
-
+    private int manaConsumption;
 
 
     // Start is called before the first frame update
@@ -28,10 +27,14 @@ public class Root : MonoBehaviour, ManaConsumer
     public void StartGrowing(List<Vector2> points, int manaConsumed)
     {
         rootPoints = new List<Vector2>(points);
-        currentDrawnRootPointIndex = 0;
+        manaConsumption = manaConsumed;
 
         ManaControl.Instance.RegisterAsManaConsumer(this);
-
+        lineRenderer.SetPosition(0, rootPoints[0]);
+        addedRootPoints.Add(rootPoints[0]);
+        lineRenderer.SetPosition(1, rootPoints[1]);
+        addedRootPoints.Add(rootPoints[1]);
+        currentDrawnRootPointIndex = 2;
     }
 
     // Update is called once per frame
@@ -41,8 +44,8 @@ public class Root : MonoBehaviour, ManaConsumer
         if (currentDrawnRootPointIndex < rootPoints.Count)
         {
             lineRenderer.positionCount++;
-            lineRenderer.SetPosition(lineRenderer.positionCount - 1, rootPoints[currentDrawnRootPointIndex]);
-
+            lineRenderer.SetPosition(currentDrawnRootPointIndex, rootPoints[currentDrawnRootPointIndex]);
+            
 
             addedRootPoints.Add(rootPoints[currentDrawnRootPointIndex]);
             currentDrawnRootPointIndex++;
@@ -54,23 +57,22 @@ public class Root : MonoBehaviour, ManaConsumer
 
     public int ManaConsumed()
     {
-        return 10;
+        return manaConsumption;
     }
 
     private static void CheckDestroy()
     {
         if (Input.GetMouseButtonDown(1))
         {
-            Vector2 pos =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            {
+                if (hitInfo.collider.gameObject.GetComponent<Root>() != null)
+                {
+                    Destroy(hitInfo.collider.gameObject);
+                }
 
-            //if (Physics2D.CircleCastNonAlloc(pos,circleCastRadius,)
-            //{
-            //    if (hitInfo.collider.gameObject.GetComponent<Root>() != null)
-            //    {
-            //        Destroy(hitInfo.collider.gameObject);
-            //    }
-
-            //}
+            }
         }
     }
 }
