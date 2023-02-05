@@ -234,7 +234,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    internal void ReciveDamage(Vector2 bulletDirection)
+    internal void ReceiveDamage(Vector2 bulletDirection)
     {
         currentHp--;
         if(currentHp <= 0)
@@ -264,6 +264,7 @@ public class PlayerController : MonoBehaviour
             TakePickUp(pickupable.manaToGive);
             Destroy(collision.gameObject);
         }
+
     }
 
     private void TakePickUp(int manaToGive)

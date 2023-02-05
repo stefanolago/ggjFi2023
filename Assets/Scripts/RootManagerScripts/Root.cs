@@ -13,6 +13,8 @@ public class Root : MonoBehaviour, ManaConsumer
     private int currentDrawnRootPointIndex;
     private int manaConsumption;
 
+    private FertileTerrain fertileTerrain;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -23,9 +25,11 @@ public class Root : MonoBehaviour, ManaConsumer
         addedRootPoints = new List<Vector2>();
     }
 
-    public void StartGrowing(List<Vector2> points, int manaConsumed)
+    public void StartGrowing(List<Vector2> points, int manaConsumed, FertileTerrain terrain)
     {
         rootPoints = new List<Vector2>(points);
+        fertileTerrain = terrain;
+        fertileTerrain.rootAlreadyPlanted = true;
         manaConsumption = manaConsumed;
 
         ManaControl.Instance.RegisterAsManaConsumer(this);
@@ -65,31 +69,28 @@ public class Root : MonoBehaviour, ManaConsumer
         return manaConsumption;
     }
 
-    private void OnMouseDown()
-    {
-        Debug.Log("Test");
-    }
-
     private void CheckDestroy()
     {
-        Debug.Log("Check Destroy");
-        //Da finire
-        /*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
-
-        if (hit.collider != null && hit.collider.gameObject == gameObject)
-        {
-            Debug.Log("Mouse click inside game object: " + hit.collider.name);
-        }*/
-
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        RaycastHit2D hit = Physics2D.CircleCast(worldPoint, 10.0f, Vector2.zero);
+        RaycastHit2D hit = Physics2D.CircleCast(worldPoint, 1.0f, Vector2.zero);
 
         if (hit.collider != null && hit.collider.gameObject == gameObject)
         {
-            Debug.Log("Mouse click inside game object: " + hit.collider.name);
+            DestroyRoot();
         }
+    }
+
+    private void DestroyRoot()
+    {
+        ManaControl.Instance.RemoveAsManaConsumer(this);
+        fertileTerrain.rootAlreadyPlanted = false;
+        Destroy(gameObject);
+    }
+
+    public void DamageRoot()
+    {
+        DestroyRoot();
     }
 }
 

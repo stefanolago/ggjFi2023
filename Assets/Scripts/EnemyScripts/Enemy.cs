@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletStrenght;
     public Transform shootPosition;
-    Rigidbody2D rigidbodyBullet;
     float time;
 
     private void Start()

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5088278228737568271}
   - component: {fileID: 5088278228737568270}
   - component: {fileID: 9098072150688333437}
-  m_Layer: 0
-  m_Name: Circle
+  m_Layer: 7
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96fdd84a3bff1c439727b72b8555ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strengh: 1000
+  strengh: 1000000
 --- !u!50 &5088278228737568270
 Rigidbody2D:
   serializedVersion: 4
@@ -130,7 +130,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 5088278228737568273}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b7688e4bee7f4814aa47ffbd4b0867b0, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

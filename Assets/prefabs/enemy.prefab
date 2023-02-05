@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1142028610976382143}
   - component: {fileID: 1142028610976382128}
   - component: {fileID: 1142028610976382129}
+  - component: {fileID: 209543849297257532}
+  - component: {fileID: -7549121477644279387}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Untagged
@@ -102,6 +104,43 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5088278228737568273, guid: 101b973d03e53fd459b5e7eb1f245005, type: 3}
   bulletStrenght: 10000
   shootPosition: {fileID: 1142028612213835751}
+--- !u!50 &209543849297257532
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142028610976382130}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!70 &-7549121477644279387
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142028610976382130}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.2902173, y: 0.37098166}
+  m_Size: {x: 1.756767, y: 1.8354084}
+  m_Direction: 0
 --- !u!1 &1142028611112269311
 GameObject:
   m_ObjectHideFlags: 0

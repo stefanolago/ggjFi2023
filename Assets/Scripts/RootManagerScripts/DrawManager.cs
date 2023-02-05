@@ -13,6 +13,7 @@ public class DrawManager : MonoBehaviour, ManaConsumer
     //public List<float> fingerPointsDistances;
     private float manaConsumption = 0;
 
+    private FertileTerrain currentFertileTerrain;
 
     private void Start()
     {
@@ -20,10 +21,6 @@ public class DrawManager : MonoBehaviour, ManaConsumer
         drawingMode = false;
     }
 
-    //private void OnDestroy()
-    //{
-    //    ManaControl.Instance.RemoveAsManaConsumer(this);
-    //}
 
     private void Update()
 
@@ -40,7 +37,7 @@ public class DrawManager : MonoBehaviour, ManaConsumer
             // Rilascio mouse sinistro conferma la creazione fisica della radice
             if (Input.GetMouseButtonUp(0))
             {
-                RootGenerator.Instance.StartGrowingRoot(fingerPositions, ManaConsumed());
+                RootGenerator.Instance.StartGrowingRoot(fingerPositions, ManaConsumed(), currentFertileTerrain);
 
                 TerminateRootDrawing();
             }
@@ -66,11 +63,11 @@ public class DrawManager : MonoBehaviour, ManaConsumer
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hitInfo))
                 {
-                    FertileTerrain fertailterrain = hitInfo.collider.gameObject.GetComponent<FertileTerrain>();
-                    if (fertailterrain != null && !fertailterrain.rootAlreadyPlanted)
+                    FertileTerrain fertileterrain = hitInfo.collider.gameObject.GetComponent<FertileTerrain>();
+                    if (fertileterrain != null && !fertileterrain.rootAlreadyPlanted)
                     {
                         drawingMode = true;
-                        fertailterrain.rootAlreadyPlanted = true;
+                        currentFertileTerrain = fertileterrain;
                         CreateLine();
                     }
 
