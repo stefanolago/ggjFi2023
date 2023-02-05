@@ -105,8 +105,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenShot: 1
   bulletPrefab: {fileID: 5088278228737568273, guid: 101b973d03e53fd459b5e7eb1f245005, type: 3}
-  bulletStrenght: 10000
+  bulletStrenght: 10
   shootPosition: {fileID: 1142028612213835751}
+  bulletSound: {fileID: 8300000, guid: 2e942b2c488178346b8d0673d7ff487e, type: 3}
 --- !u!50 &209543849297257532
 Rigidbody2D:
   serializedVersion: 4

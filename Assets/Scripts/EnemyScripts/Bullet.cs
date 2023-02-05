@@ -24,15 +24,6 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>())
-        {
-            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-            bulletDirection = (transform.position - collision.transform.position);
-            player.ReceiveDamage(bulletDirection);
-            player.gameObject.GetComponent<Rigidbody2D>().AddForce(bulletDirection * strengh, ForceMode2D.Impulse);
-            Destroy(gameObject);
-
-        }
         if (collision.gameObject.GetComponent<Root>())
         {
             Root root = collision.gameObject.GetComponent<Root>();
@@ -43,15 +34,26 @@ public class Bullet : MonoBehaviour
             rebounced = true;
             GetComponent<Renderer>().material.color = Color.red;
         }
-        
+        else
+        {
+            if (collision.gameObject.GetComponent<PlayerController>())
+            {
+                PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+                bulletDirection = (transform.position - collision.transform.position);
+                player.gameObject.GetComponent<Rigidbody2D>().AddForce(bulletDirection * strengh, ForceMode2D.Impulse);
+                player.ReceiveDamage(bulletDirection);
+                
+            }
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (rebounced && collision.gameObject.GetComponent<Enemy>())
         {
-            Destroy(gameObject);
             collision.gameObject.GetComponent<Enemy>().Death();
+            Destroy(gameObject);
         }
     }
 }

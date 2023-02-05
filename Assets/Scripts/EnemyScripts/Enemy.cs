@@ -25,7 +25,6 @@ public class Enemy : MonoBehaviour
             if (timer >= timeBetweenShot)
             {
                 timer = 0.0f;
-                Debug.Log("START COROUTINE");
                 StartCoroutine(PlayAnimation());
             }
         }
@@ -44,12 +43,14 @@ public class Enemy : MonoBehaviour
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
         rigidbody.AddForce(-transform.right * bulletStrenght * transform.localScale.x, ForceMode2D.Impulse);
         animator.Play("Idle");
+        SoundManager.Instance.PlayBulletSound();
 
     }
 
     public void Death()
     {
         animator.Play("DeathAnimation");
+        SoundManager.Instance.PlayDeathPlayerSound();
     }
 
     public void EndDeathAnimation()

@@ -163,7 +163,8 @@ public class PlayerController : MonoBehaviour
         if (downMovement && isGrounded)
         {
 
-            if (Physics2D.OverlapCircle(groundCheck.position, 0.3f, groundMask).GetComponent<PlatformEffector2D>() != null)
+            Collider2D coll = Physics2D.OverlapCircle(groundCheck.position, 0.3f, groundMask);
+            if (coll != null && coll.GetComponent<PlatformEffector2D>() != null)
             {
                 PlatformEffector2D currentPlatform = Physics2D.OverlapCircle(groundCheck.position, 0.3f, groundMask).GetComponent<PlatformEffector2D>();
                 StartCoroutine(DisableCollision(currentPlatform));
@@ -247,8 +248,8 @@ public class PlayerController : MonoBehaviour
     {
         endGame = true;
         animator.SetBool("dead", true);
-        Destroy(gameObject);
-
+        SoundManager.Instance.PlayDeathPlayerSound();
+        Destroy(gameObject); 
     }
 
     private void OnDrawGizmos()
@@ -269,7 +270,7 @@ public class PlayerController : MonoBehaviour
 
     private void TakePickUp(int manaToGive)
     {
-        ManaControl.Instance.maxMana += manaToGive;
+        ManaControl.Instance.AddMana(manaToGive);
     }
 }
 
