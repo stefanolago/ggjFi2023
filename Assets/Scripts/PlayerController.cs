@@ -270,7 +270,7 @@ public class PlayerController : MonoBehaviour
 
     private void TakePickUp(int manaToGive)
     {
-        ManaControl.Instance.maxMana += manaToGive;
+        ManaControl.Instance.AddMana(manaToGive);
     }
 }
 
