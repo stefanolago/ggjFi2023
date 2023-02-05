@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Root : MonoBehaviour, ManaConsumer
 {
-    public float circleCastRadius;
-    private RaycastHit2D[] castCollisions;
-
     private LineRenderer lineRenderer;
 
     private EdgeCollider2D edgeCollider;
@@ -15,6 +12,8 @@ public class Root : MonoBehaviour, ManaConsumer
 
     private int currentDrawnRootPointIndex;
     private int manaConsumption;
+
+    private FertileTerrain fertileTerrain;
 
 
     // Start is called before the first frame update
@@ -26,9 +25,11 @@ public class Root : MonoBehaviour, ManaConsumer
         addedRootPoints = new List<Vector2>();
     }
 
-    public void StartGrowing(List<Vector2> points, int manaConsumed)
+    public void StartGrowing(List<Vector2> points, int manaConsumed, FertileTerrain terrain)
     {
         rootPoints = new List<Vector2>(points);
+        fertileTerrain = terrain;
+        fertileTerrain.rootAlreadyPlanted = true;
         manaConsumption = manaConsumed;
 
         ManaControl.Instance.RegisterAsManaConsumer(this);
@@ -42,7 +43,7 @@ public class Root : MonoBehaviour, ManaConsumer
     // Update is called once per frame
     void FixedUpdate()
     {
-        //fingerPositions.Add(newFingerPos);
+
         if (currentDrawnRootPointIndex < rootPoints.Count)
         {
             lineRenderer.positionCount++;
@@ -70,20 +71,26 @@ public class Root : MonoBehaviour, ManaConsumer
 
     private void CheckDestroy()
     {
-        //Da finire
-            Vector2 pos =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
-       
+        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            if (Physics2D.CircleCastNonAlloc(pos, circleCastRadius,Camera.main.transform.forward,castCollisions) > 0)
-            {
-            Debug.Log("entrato");
-                if (castCollisions[0].collider.gameObject.GetComponent<Root>())
-                {
-                    Destroy(gameObject);
-                Debug.Log("Elimina");
-                    
-                }
-            }
+        RaycastHit2D hit = Physics2D.CircleCast(worldPoint, 1.0f, Vector2.zero);
+
+        if (hit.collider != null && hit.collider.gameObject == gameObject)
+        {
+            DestroyRoot();
         }
     }
+
+    private void DestroyRoot()
+    {
+        ManaControl.Instance.RemoveAsManaConsumer(this);
+        fertileTerrain.rootAlreadyPlanted = false;
+        Destroy(gameObject);
+    }
+
+    public void DamageRoot()
+    {
+        DestroyRoot();
+    }
+}
 
