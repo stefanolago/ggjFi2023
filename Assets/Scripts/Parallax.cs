@@ -25,7 +25,8 @@ public class Parallax : MonoBehaviour
     void Update()
     {
         float delta = mainCamera.transform.position.x - lastCameraPos.x;
-        transform.position += Vector3.right * delta * multiplier;
+
+        transform.position = new Vector3( transform.position.x+ delta * multiplier, mainCamera.transform.position.y);
         lastCameraPos = mainCamera.transform.position;
 
         if (Mathf.Abs(mainCamera.transform.position.x - transform.position.x) >= textureUnitSize)
