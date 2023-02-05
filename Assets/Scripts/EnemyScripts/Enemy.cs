@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
     public void Death()
     {
         animator.Play("DeathAnimation");
-        SoundManager.Instance.PlayDeathPlayerSound();
+        SoundManager.Instance.PlayDeathEnemySound();
     }
 
     public void EndDeathAnimation()

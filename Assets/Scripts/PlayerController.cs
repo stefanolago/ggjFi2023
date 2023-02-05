@@ -278,6 +278,18 @@ public class PlayerController : MonoBehaviour
     {
         ManaControl.Instance.AddMana(manaToGive);
     }
+
+    public void StartCasting()
+    {
+        animator.SetBool("casting", true);
+
+    }
+
+    public void StopCasting()
+    {
+
+        animator.SetBool("casting", false);
+    }
 }
 
 

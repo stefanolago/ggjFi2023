@@ -14,11 +14,13 @@ public class DrawManager : MonoBehaviour, ManaConsumer
     private float manaConsumption = 0;
 
     private FertileTerrain currentFertileTerrain;
+    public PlayerController pc;
 
     private void Start()
     {
         ManaControl.Instance.RegisterAsManaConsumer(this);
         drawingMode = false;
+        pc.StopCasting();
     }
 
 
@@ -54,6 +56,8 @@ public class DrawManager : MonoBehaviour, ManaConsumer
                 }
 
             }
+
+            
         }
         else
         {
@@ -67,6 +71,7 @@ public class DrawManager : MonoBehaviour, ManaConsumer
                     if (fertileterrain != null && !fertileterrain.rootAlreadyPlanted)
                     {
                         drawingMode = true;
+                        pc.StartCasting();
                         currentFertileTerrain = fertileterrain;
                         CreateLine();
                     }
@@ -86,6 +91,7 @@ public class DrawManager : MonoBehaviour, ManaConsumer
         fingerPositions = new List<Vector2>();
         ResetManaConsumption();
         drawingMode = false;
+        pc.StopCasting();
     }
 
     void UpdateLine(Vector2 newFingerPos)
