@@ -38,6 +38,8 @@ public class Root : MonoBehaviour, ManaConsumer
         lineRenderer.SetPosition(1, rootPoints[1]);
         addedRootPoints.Add(rootPoints[1]);
         currentDrawnRootPointIndex = 2;
+
+        SoundManager.Instance.PlayRootGrowthSound();
     }
 
     // Update is called once per frame

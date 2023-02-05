@@ -40,8 +40,8 @@ public class Bullet : MonoBehaviour
             {
                 PlayerController player = collision.gameObject.GetComponent<PlayerController>();
                 bulletDirection = (transform.position - collision.transform.position);
-                player.ReceiveDamage(bulletDirection);
                 player.gameObject.GetComponent<Rigidbody2D>().AddForce(bulletDirection * strengh, ForceMode2D.Impulse);
+                player.ReceiveDamage(bulletDirection);
                 
             }
             Destroy(gameObject);

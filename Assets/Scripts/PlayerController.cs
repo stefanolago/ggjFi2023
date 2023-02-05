@@ -248,8 +248,8 @@ public class PlayerController : MonoBehaviour
     {
         endGame = true;
         animator.SetBool("dead", true);
-        Destroy(gameObject);
-
+        SoundManager.Instance.PlayDeathPlayerSound();
+        Destroy(gameObject); 
     }
 
     private void OnDrawGizmos()
