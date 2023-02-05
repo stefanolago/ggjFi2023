@@ -7,7 +7,7 @@ public class StartMenu : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("ProvaSte");
+        SceneManager.LoadScene("Livello Completo");
     }
 
     public void OptionsMenu()
