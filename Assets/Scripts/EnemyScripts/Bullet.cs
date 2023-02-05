@@ -51,7 +51,7 @@ public class Bullet : MonoBehaviour
         if (rebounced && collision.gameObject.GetComponent<Enemy>())
         {
             Destroy(gameObject);
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<Enemy>().Death();
         }
     }
 }

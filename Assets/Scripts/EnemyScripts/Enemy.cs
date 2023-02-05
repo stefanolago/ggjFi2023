@@ -17,7 +17,8 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Shoot Animation"))
+        AnimatorStateInfo animatorInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (!animatorInfo.IsName("ShootAnimation") && !animatorInfo.IsName("DeathAnimation"))
         {
             timer += Time.deltaTime;
 
@@ -44,6 +45,16 @@ public class Enemy : MonoBehaviour
         rigidbody.AddForce(-transform.right * bulletStrenght * transform.localScale.x, ForceMode2D.Impulse);
         animator.Play("Idle");
 
+    }
+
+    public void Death()
+    {
+        animator.Play("DeathAnimation");
+    }
+
+    public void EndDeathAnimation()
+    {
+        Destroy(gameObject);
     }
 
 }
