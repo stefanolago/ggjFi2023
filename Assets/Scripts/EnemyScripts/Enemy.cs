@@ -8,29 +8,42 @@ public class Enemy : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletStrenght;
     public Transform shootPosition;
-    float time;
+    private Animator animator;
+    private float timer;
 
     private void Start()
-    {}
+    {
+        animator = GetComponent<Animator>();
+    }
     private void Update()
     {
-        if (time < timeBetweenShot)
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Shoot Animation"))
         {
-            time += Time.deltaTime;
-        }
-        else
-        {
-            Shoot();
-            time = 0;
+            timer += Time.deltaTime;
+
+            if (timer >= timeBetweenShot)
+            {
+                timer = 0.0f;
+                Debug.Log("START COROUTINE");
+                StartCoroutine(PlayAnimation());
+            }
         }
     }
 
+    private IEnumerator PlayAnimation()
+    {
+
+        animator.Play("ShootAnimation");
+        yield return new WaitForSeconds(timeBetweenShot);
+    }
 
     public void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab,shootPosition.position,Quaternion.identity);
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
-        rigidbody.AddForce(Vector2.right * bulletStrenght, ForceMode2D.Impulse);
-       
+        rigidbody.AddForce(Vector2.left * bulletStrenght, ForceMode2D.Impulse);
+        animator.Play("Idle");
+
     }
+
 }

@@ -43,6 +43,11 @@ public class Bullet : MonoBehaviour
             rebounced = true;
             GetComponent<Renderer>().material.color = Color.red;
         }
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (rebounced && collision.gameObject.GetComponent<Enemy>())
         {
             Destroy(gameObject);
