@@ -14707,10 +14707,10 @@ PrefabInstance:
         You fuel your power with acorns, but the time will come when you must return
         that energy to the natural cycle of the world."
 
-        
 
-        (Eat
-        acorns by running over them to refill the mana bar)'
+
+        (Eat acorns by
+        running over them to refill the mana bar)'
       objectReference: {fileID: 0}
     - target: {fileID: 650575162992279159, guid: ed22f69e68686ee41a5a3abb1b307b3d, type: 3}
       propertyPath: m_fontSize
@@ -29866,6 +29866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootShadowPrefab: {fileID: 1160411418115931207, guid: 7f23fad09d6c7554a96cfc021c8800c3, type: 3}
   fingerPositions: []
+  pc: {fileID: 1768753362}
 --- !u!4 &927030927
 Transform:
   m_ObjectHideFlags: 0
@@ -31083,7 +31084,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345292744}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 336, y: 147.9, z: 8.6}
+  m_LocalPosition: {x: 336, y: 147.9, z: 23.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -88284,6 +88285,63 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &1475668971
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8814498858181290906, guid: 1e344aa396c91fb449688b7e382bc902, type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814498858181290908, guid: 1e344aa396c91fb449688b7e382bc902, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814498858181290908, guid: 1e344aa396c91fb449688b7e382bc902, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.537446
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814498858181290908, guid: 1e344aa396c91fb449688b7e382bc902, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.1204386
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814498858181290908, guid: 1e344aa396c91fb449688b7e382bc902, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -107.718796
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814498858181290908, guid: 1e344aa396c91fb449688b7e382bc902, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814498858181290908, guid: 1e344aa396c91fb449688b7e382bc902, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814498858181290908, guid: 1e344aa396c91fb449688b7e382bc902, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814498858181290908, guid: 1e344aa396c91fb449688b7e382bc902, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814498858181290908, guid: 1e344aa396c91fb449688b7e382bc902, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814498858181290908, guid: 1e344aa396c91fb449688b7e382bc902, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814498858181290908, guid: 1e344aa396c91fb449688b7e382bc902, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1e344aa396c91fb449688b7e382bc902, type: 3}
 --- !u!1001 &1526937109
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89416,6 +89474,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4742900173452194552, guid: 6faa604c99572e849bff66d36d093b2f, type: 3}
   m_PrefabInstance: {fileID: 1768753358}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1768753362 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4742900173452194555, guid: 6faa604c99572e849bff66d36d093b2f, type: 3}
+  m_PrefabInstance: {fileID: 1768753358}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5bdd7fed26204f4795aebed6cdf1c48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1775540276 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1142028610976382143, guid: cd71805230a21c246bbefd4917a2ad83, type: 3}
@@ -90266,12 +90335,12 @@ SpriteRenderer:
   m_SortingLayerID: 1491775229
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 36d1ea4ffa2c8b547a819eae27266b52, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa42937bf210a5443b9f6cd693359795, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 96.02805, y: 21.599998}
+  m_Size: {x: 38.399998, y: 21.599998}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
