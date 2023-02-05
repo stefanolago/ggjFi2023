@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab,shootPosition.position,Quaternion.identity);
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
-        rigidbody.AddForce(Vector2.left * bulletStrenght, ForceMode2D.Impulse);
+        rigidbody.AddForce(-transform.right * bulletStrenght * transform.localScale.x, ForceMode2D.Impulse);
         animator.Play("Idle");
 
     }
