@@ -156,7 +156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1142028610976382143, guid: cd71805230a21c246bbefd4917a2ad83, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1142028610976382143, guid: cd71805230a21c246bbefd4917a2ad83, type: 3}
       propertyPath: m_LocalScale.y
@@ -606,6 +606,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 199a775dabf45a54a8a18e34f8a20694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1036570005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4742900173452194555, guid: 6faa604c99572e849bff66d36d093b2f, type: 3}
+  m_PrefabInstance: {fileID: 4742900174583931468}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5bdd7fed26204f4795aebed6cdf1c48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1158136166
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,6 +862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootShadowPrefab: {fileID: 1160411418115931207, guid: 7f23fad09d6c7554a96cfc021c8800c3, type: 3}
   fingerPositions: []
+  pc: {fileID: 1036570005}
 --- !u!4 &1339162351
 Transform:
   m_ObjectHideFlags: 0
