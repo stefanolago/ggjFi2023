@@ -10,7 +10,6 @@ public class Enemy : MonoBehaviour
     public Transform shootPosition;
     private Animator animator;
     private float timer;
-    [SerializeField] AudioClip bulletSound;
 
     private void Start()
     {
@@ -44,13 +43,14 @@ public class Enemy : MonoBehaviour
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
         rigidbody.AddForce(-transform.right * bulletStrenght * transform.localScale.x, ForceMode2D.Impulse);
         animator.Play("Idle");
-        SoundManager.Instance.PlaySound(bulletSound);
+        SoundManager.Instance.PlayBulletSound();
 
     }
 
     public void Death()
     {
         animator.Play("DeathAnimation");
+        SoundManager.Instance.PlayDeathPlayerSound();
     }
 
     public void EndDeathAnimation()

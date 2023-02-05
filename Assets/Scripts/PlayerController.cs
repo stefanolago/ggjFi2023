@@ -50,6 +50,9 @@ public class PlayerController : MonoBehaviour
     bool downMovement;
 
     //Dichiarazioni Audio
+    //public AudioClip footStepsClip;
+
+
     public float timerAudioPassi;
     float timerPassi;
 
@@ -118,12 +121,8 @@ public class PlayerController : MonoBehaviour
             CheckForGround();
             UpdateHorizontal();
            
-
-
             switch (state)
             {
-
-
                 case PlayerState.Grounded:
                     CheckDownMovement();
                     CheckJump();
@@ -148,6 +147,11 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("horizontalSpeed", Mathf.Abs(body.velocity.x));
             animator.SetFloat("verticalSpeed", body.velocity.y);
             animator.SetBool("grounded", isGrounded);
+
+            //if(body.velocity.x != 0)
+            //{
+                //SoundManager.Instance.PlayFootStepsSound();
+            //}
         }
         else
         {
@@ -248,8 +252,9 @@ public class PlayerController : MonoBehaviour
     {
         endGame = true;
         animator.SetBool("dead", true);
-        Destroy(gameObject);
-
+        SoundManager.Instance.PlayDeathPlayerSound();
+        healthDisplayText.text = "Health: " + currentHp;
+        Destroy(gameObject); 
     }
 
     private void OnDrawGizmos()
@@ -263,6 +268,7 @@ public class PlayerController : MonoBehaviour
         if(pickupable != null)
         {
             TakePickUp(pickupable.manaToGive);
+            SoundManager.Instance.PlayPickupSound();
             Destroy(collision.gameObject);
         }
 
