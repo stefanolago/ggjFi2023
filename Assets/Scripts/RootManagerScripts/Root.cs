@@ -87,6 +87,7 @@ public class Root : MonoBehaviour, ManaConsumer
     {
         ManaControl.Instance.RemoveAsManaConsumer(this);
         fertileTerrain.rootAlreadyPlanted = false;
+        SoundManager.Instance.PlayDestructionRootSound();
         Destroy(gameObject);
     }
 

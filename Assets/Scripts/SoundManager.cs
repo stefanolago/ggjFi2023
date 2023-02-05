@@ -18,6 +18,7 @@ public class SoundManager : Singleton<SoundManager>
     [SerializeField] AudioClip pickupSound;
     [SerializeField] AudioClip rootGrowthSound;
     [SerializeField] AudioClip walkOnSticksSound;
+    [SerializeField] List<AudioClip> footStepsSounds;
 
     // Start is called before the first frame update
     void Awake()
@@ -25,9 +26,9 @@ public class SoundManager : Singleton<SoundManager>
         source = GetComponent<AudioSource>();
     }
 
-    private void PlaySound(AudioClip _sound)
+    public void PlaySound(AudioClip _sound, float volumeScale = 1.0f)
     {
-        source.PlayOneShot(_sound);
+        source.PlayOneShot(_sound, volumeScale);
     }
 
     public void PlayBulletSound()
@@ -77,12 +78,20 @@ public class SoundManager : Singleton<SoundManager>
 
     public void PlayRootGrowthSound()
     {
-        PlaySound(rootGrowthSound);
+        PlaySound(rootGrowthSound, 0.4f);
     }
 
     public void PlayWalkOnSticksSound()
     {
         PlaySound(walkOnSticksSound);
+    }
+
+    public void PlayFootStepsSound()
+    {
+        //PlaySound(footStepsSound);
+        int soundToPlay = Random.Range(0, footStepsSounds.Count);
+        PlaySound(footStepsSounds[soundToPlay]);
+
     }
 
 }
