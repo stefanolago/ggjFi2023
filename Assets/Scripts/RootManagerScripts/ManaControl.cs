@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class ManaControl : Singleton<ManaControl>
 {
-    public int maxMana = 100;
+    public int maxMana;
+    public int capMana;
     public int currentMana { get; private set; }
 
     private List<ManaConsumer> manaConsumers = new List<ManaConsumer>();
@@ -41,6 +42,19 @@ public class ManaControl : Singleton<ManaControl>
         if (manaText != null) { 
             manaText.text = "Mana: " + (currentMana > 0 ? currentMana : 0);
         }
+    }
+
+    public void AddMana(int manaToAdd)
+    {
+        if(maxMana < capMana)
+        {
+            maxMana += manaToAdd;
+            if(maxMana >= capMana)
+            {
+                maxMana = capMana;
+            }
+        }
+        
     }
 
     public void ResetMana()
