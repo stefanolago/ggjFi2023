@@ -20,7 +20,6 @@ public class DrawManager : MonoBehaviour, ManaConsumer
     {
         ManaControl.Instance.RegisterAsManaConsumer(this);
         drawingMode = false;
-        pc.StopCasting();
     }
 
 

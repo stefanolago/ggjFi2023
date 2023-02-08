@@ -26,13 +26,13 @@ public class Parallax : MonoBehaviour
     {
         float delta = mainCamera.transform.position.x - lastCameraPos.x;
 
-        transform.position = new Vector3( transform.position.x+ delta * multiplier, mainCamera.transform.position.y, transform.position.z);
+        transform.position = new Vector3( transform.position.x+ delta * multiplier, mainCamera.transform.position.y, -1);
         lastCameraPos = mainCamera.transform.position;
 
         if (Mathf.Abs(mainCamera.transform.position.x - transform.position.x) >= textureUnitSize)
         {
             float offsetX = (mainCamera.transform.position.x - transform.position.x) % textureUnitSize;
-            transform.position = new Vector3(mainCamera.transform.position.x + offsetX, transform.position.y, transform.position.z);
+            transform.position = new Vector3(mainCamera.transform.position.x + offsetX, transform.position.y, -1);
         }
     }
 }

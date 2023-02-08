@@ -287,7 +287,6 @@ public class PlayerController : MonoBehaviour
 
     public void StopCasting()
     {
-
         animator.SetBool("casting", false);
     }
 }
